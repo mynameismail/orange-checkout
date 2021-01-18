@@ -94,6 +94,9 @@ html, body
   flex: 1
   padding: 0 40px
 
+.header
+  margin-bottom: 30px
+
 .header__text
   title: 36px
   position: relative
@@ -109,7 +112,6 @@ html, body
 
 #delivery .form
   display: flex
-  margin-top: 36px
 
 .form__details
   width: 400px
@@ -154,6 +156,71 @@ html, body
     height: 120px
     resize: vertical
     font-family: 'Inter', sans-serif
+
+.shipment, .payment
+  display: flex
+  margin-bottom: 60px
+
+.choice
+  margin-right: 10px
+  position: relative
+  .check
+    position: absolute
+    right: 10px
+    top: 20px
+    color: success-color
+    visibility: hidden
+  label
+    display: block
+    width: 180px
+    padding: 10px 15px
+    min-height: 60px
+    border: 1px solid #cccccc
+    box-sizing: border-box
+    &:hover
+      border: 2px solid success-color
+    .text
+      font-size: 13px
+      color: #000000
+      opacity: 0.8
+    .price
+      font-size: 16px
+      color: #2d2a40
+  input
+    position: fixed
+    width: 0
+    &:checked + label
+      background: rgba(27, 217, 123, 0.1)
+      border: 2px solid success-color
+    &:checked ~ .check
+      visibility: visible
+
+#thankyou
+  margin: 100px 0 0 200px
+
+.order
+  margin-top: 26px
+  font-size: 14px
+
+.delivery-text
+  font-size: 14px
+  opacity: 0.6
+
+.gohome
+  margin-top: 60px
+  display: flex
+  align-items: center
+  cursor: pointer
+  opacity: 0.6
+  &:hover
+    opacity: 1
+
+.gohome__icon
+  font-size: 18px
+
+.gohome__text
+  font-size: 14px
+  margin-left: 5px
 
 .content__divider
   width: 1px
@@ -220,5 +287,3 @@ html, body
   color: #ffffff
   outline: none
   cursor: pointer
-  &:hover
-    opacity: 0.8
