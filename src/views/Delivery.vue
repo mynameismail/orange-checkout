@@ -1,7 +1,24 @@
 <template>
   <div class="container">
     <div class="stepper">
-      Stepper
+      <div class="stepper__step step1 completed">
+        <div class="number">1</div>
+        <div class="text">Delivery</div>
+      </div>
+      <div class="stepper__arrow">
+        <span class="material-icons">keyboard_arrow_right</span>
+      </div>
+      <div class="stepper__step step2">
+        <div class="number">2</div>
+        <div class="text">Payment</div>
+      </div>
+      <div class="stepper__arrow">
+        <span class="material-icons">keyboard_arrow_right</span>
+      </div>
+      <div class="stepper__step step3">
+        <div class="number">3</div>
+        <div class="text">Finish</div>
+      </div>
     </div>
     <div class="back">
       <span class="back__icon material-icons">arrow_back</span>
@@ -32,11 +49,11 @@
             <div class="text">Delivery estimation</div>
             <div class="value">today by GO-SEND</div>
           </div>
-          <!-- <div class="summary__item payment-method">
+          <div class="summary__item payment-method">
             <div class="divider"></div>
             <div class="text">Payment method</div>
             <div class="value">Bank Transfer</div>
-          </div> -->
+          </div>
         </div>
         <div class="pricing">
           <div class="pricing__item">

@@ -39,6 +39,34 @@ html, body
   top: -(@height / 2)
   left: 50%
   margin-left: -(@width / 2)
+  display: flex
+  justify-content: center
+  align-items: center
+
+.stepper__step
+  display: flex
+  align-items: center
+  font-size: 16px
+  .number
+    width: 30px
+    line-height: 30px
+    text-align: center
+    background-color: primary-color
+    opacity: 0.2
+    color: #ffffff
+    border-radius: 15px
+  .text
+    margin-left: 10px
+    color: primary-color
+  &.completed .number
+    opacity: 1
+
+.stepper__arrow
+  margin: 0 20px
+  font-size: 24px
+  color: primary-color
+  .material-icons
+    line-height: 30px
 
 .back
   display: flex
@@ -129,7 +157,6 @@ html, body
     margin-top: 20px
     .text
       opacity: 1
-
 
 .pricing__btn-continue
   width: 100%
