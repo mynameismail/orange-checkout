@@ -107,6 +107,54 @@ html, body
   top: -14px
   z-index: 1
 
+#delivery .form
+  display: flex
+  margin-top: 36px
+
+.form__details
+  width: 400px
+  margin-right: 20px
+
+.form__dropshipper
+  width: 300px
+  position: relative
+
+.form__dropshipper .input-check
+  position: absolute
+  top: -36px
+  right: 0
+
+.input-group 
+  position: relative
+  margin-bottom: 10px
+  label
+    position: absolute
+    left: 15px
+    top: 20px
+    font-size: 16px
+    opacity: 0.4
+    cursor: text
+    transition: 0.2s ease all
+  input, textarea
+    width: 100%
+    padding: 30px 15px 10px 15px
+    border: 1px solid #cccccc
+    box-sizing: border-box
+    font-size: 16px
+    outline: none
+    &:focus, &:valid
+      color: #2d2a40
+    &:focus + label, &:valid + label
+      top: 10px
+      font-size: 13px
+      opacity: 0.8
+  input
+    height: 60px
+  textarea
+    height: 120px
+    resize: vertical
+    font-family: 'Inter', sans-serif
+
 .content__divider
   width: 1px
   background-color: primary-color
@@ -170,3 +218,7 @@ html, body
   font-family: 'Inter', sans-serif
   font-size: 18px
   color: #ffffff
+  outline: none
+  cursor: pointer
+  &:hover
+    opacity: 0.8

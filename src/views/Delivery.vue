@@ -1,78 +1,46 @@
 <template>
-  <div class="container">
-    <div class="stepper">
-      <div class="stepper__step step1 completed">
-        <div class="number">1</div>
-        <div class="text">Delivery</div>
-      </div>
-      <div class="stepper__arrow">
-        <span class="material-icons">keyboard_arrow_right</span>
-      </div>
-      <div class="stepper__step step2">
-        <div class="number">2</div>
-        <div class="text">Payment</div>
-      </div>
-      <div class="stepper__arrow">
-        <span class="material-icons">keyboard_arrow_right</span>
-      </div>
-      <div class="stepper__step step3">
-        <div class="number">3</div>
-        <div class="text">Finish</div>
-      </div>
+  <div id="delivery">
+    <div class="header">
+      <div class="header__text">Delivery details</div>
+      <div class="header__underline"></div>
     </div>
-    <div class="back">
-      <span class="back__icon material-icons">arrow_back</span>
-      <span class="back__text">Back to cart</span>
-    </div>
-    <div class="content">
-      <div class="content__left">
-        <div class="details">
-          <div class="header">
-            <div class="header__text">Delivery details</div>
-            <div class="header__underline"></div>
-          </div>
+    <div class="form">
+      <div class="form__details">
+        <div class="input-group input-text">
+          <input type="text" id="details-email" required>
+          <label for="details-email">Email</label>
+          <!-- <span class="invalid material-icons">clear</span>
+          <span class="valid material-icons">check</span> -->
         </div>
-        <div class="dropshipper">
-          <div class="">
-            <div class="">Send as dropshipper</div>
-            <div class=""></div>
-          </div>
+        <div class="input-group input-tel">
+          <input type="tel" id="details-phone" required>
+          <label for="details-phone">Phone Number</label>
+          <!-- <span class="invalid material-icons">clear</span>
+          <span class="valid material-icons">check</span> -->
+        </div>
+        <div class="input-group input-textarea">
+          <textarea id="details-address" maxlength="120" required></textarea>
+          <label for="details-address">Delivery Address</label>
+          <!-- <span class="invalid material-icons">clear</span>
+          <span class="valid material-icons">check</span> -->
         </div>
       </div>
-      <div class="content__divider"></div>
-      <div class="content__right">
-        <div class="summary">
-          <div class="summary__header">Summary</div>
-          <div class="summary__purchased">10 items purchased</div>
-          <div class="summary__item delivery-estimation">
-            <div class="divider"></div>
-            <div class="text">Delivery estimation</div>
-            <div class="value">today by GO-SEND</div>
-          </div>
-          <div class="summary__item payment-method">
-            <div class="divider"></div>
-            <div class="text">Payment method</div>
-            <div class="value">Bank Transfer</div>
-          </div>
+      <div class="form__dropshipper">
+        <div class="input-check">
+          <input type="checkbox" id="dropshipper-check" v-model="asDropshipper">
+          <label for="dropshipper-check">Send as dropshipper</label>
         </div>
-        <div class="pricing">
-          <div class="pricing__item">
-            <span class="text">Cost of goods</span>
-            <span class="value">500,000</span>
-          </div>
-          <div class="pricing__item">
-            <span class="text">Dropshipping Fee</span>
-            <span class="value">5,900</span>
-          </div>
-          <div class="pricing__item">
-            <span class="text">GO-SEND shipment</span>
-            <span class="value">15,000</span>
-          </div>
-          <div class="pricing__item total">
-            <span class="text">Total</span>
-            <span class="value">520,900</span>
-          </div>
-          <button class="pricing__btn-continue">Continue to Payment</button>
+        <div class="input-group input-text">
+          <input type="text" id="dropshipper-name" :disabled="!asDropshipper" :required="asDropshipper">
+          <label for="dropshipper-name">Dropshipper name</label>
+          <!-- <span class="invalid material-icons">clear</span>
+          <span class="valid material-icons">check</span> -->
+        </div>
+        <div class="input-group input-tel">
+          <input type="tel" id="dropshipper-phone" :disabled="!asDropshipper" :required="asDropshipper">
+          <label for="dropshipper-phone">Dropshipper phone number</label>
+          <!-- <span class="invalid material-icons">clear</span>
+          <span class="valid material-icons">check</span> -->
         </div>
       </div>
     </div>
@@ -81,6 +49,11 @@
 
 <script>
 export default {
-  name: 'Delivery'
+  name: 'Delivery',
+  data() {
+    return {
+      asDropshipper: false
+    }
+  }
 }
 </script>
