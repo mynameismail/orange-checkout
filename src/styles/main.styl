@@ -121,10 +121,37 @@ html, body
   width: 300px
   position: relative
 
-.form__dropshipper .input-check
+.form__dropshipper .checkbox
   position: absolute
-  top: -36px
+  top: -45px
   right: 0
+
+.checkbox__label
+  display: flex
+  align-items: center
+  opacity: 0.6
+  &:hover
+    opacity: 1
+  .text
+    margin-left: 10px
+  .box
+    width: 20px
+    height: 20px
+    border: 1px solid #cccccc
+    .icon
+      font-size: 18px
+      color: success-color
+      visibility: hidden
+
+.checkbox__input
+  position: fixed
+  width: 0
+  &:checked + .checkbox__label
+    opacity: 1
+    .box
+      border: 2px solid success-color
+      .icon
+        visibility: visible
 
 .input-group 
   position: relative
@@ -137,6 +164,21 @@ html, body
     opacity: 0.4
     cursor: text
     transition: 0.2s ease all
+    .label--valid
+      color: success-color
+    .label--invalid
+      color: primary-color
+  .icon
+    position: absolute
+    right: 10px
+    top: 20px
+    visibility: hidden
+    &.icon--valid
+      color: success-color
+      visibility: visible
+    &.icon--invalid
+      color: primary-color
+      visibility: visible
   input, textarea
     width: 100%
     padding: 30px 15px 10px 15px
@@ -150,6 +192,10 @@ html, body
       top: 10px
       font-size: 13px
       opacity: 0.8
+    &.input--valid
+      border: 1px solid success-color
+    &.input--invalid
+      border: 1px solid primary-color
   input
     height: 60px
   textarea

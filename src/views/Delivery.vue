@@ -6,41 +6,107 @@
     </div>
     <div class="form">
       <div class="form__details">
-        <div class="input-group input-text">
-          <input type="text" id="details-email" required>
-          <label for="details-email">Email</label>
-          <!-- <span class="invalid material-icons">clear</span>
-          <span class="valid material-icons">check</span> -->
+        <div class="input-group">
+          <input
+            type="text"
+            id="details-email"
+            :class="`input--${valid.emailAddr}`"
+            v-model="emailAddr"
+            required>
+          <label
+            for="details-email"
+            :class="`label--${valid.emailAddr}`"
+          >Email</label>
+          <span
+            class="icon material-icons"
+            :class="`icon--${valid.emailAddr}`"
+          >{{ valid.emailAddr == 'valid' ? 'check' : 'clear' }}</span>
         </div>
-        <div class="input-group input-tel">
-          <input type="tel" id="details-phone" required>
-          <label for="details-phone">Phone Number</label>
-          <!-- <span class="invalid material-icons">clear</span>
-          <span class="valid material-icons">check</span> -->
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="details-phone"
+            :class="`input--${valid.phone}`"
+            v-model="phone"
+            maxlength="20"
+            required>
+          <label 
+            for="details-phone"
+            :class="`label--${valid.phone}`"
+          >Phone Number</label>
+          <span
+            class="icon material-icons"
+            :class="`icon--${valid.phone}`"
+          >{{ valid.phone == 'valid' ? 'check' : 'clear' }}</span>
         </div>
-        <div class="input-group input-textarea">
-          <textarea id="details-address" maxlength="120" required></textarea>
-          <label for="details-address">Delivery Address</label>
-          <!-- <span class="invalid material-icons">clear</span>
-          <span class="valid material-icons">check</span> -->
+        <div class="input-group">
+          <textarea
+            id="details-address"
+            :class="`input--${valid.address}`"
+            v-model="address"
+            maxlength="120"
+            required></textarea>
+          <label 
+            for="details-address"
+            :class="`label--${valid.address}`"
+          >Delivery Address</label>
+          <span
+            class="icon material-icons"
+            :class="`icon--${valid.address}`"
+          >{{ valid.address == 'valid' ? 'check' : 'clear' }}</span>
         </div>
       </div>
       <div class="form__dropshipper">
-        <div class="input-check">
-          <input type="checkbox" id="dropshipper-check" v-model="asDropshipper">
-          <label for="dropshipper-check">Send as dropshipper</label>
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            id="dropshipper-check"
+            class="checkbox__input"
+            v-model="asDropshipper">
+          <label
+            for="dropshipper-check"
+            class="checkbox__label"
+          >
+            <div class="box">
+              <span class="icon material-icons">check</span>
+            </div>
+            <span class="text">Send as dropshipper</span>
+          </label>
         </div>
-        <div class="input-group input-text">
-          <input type="text" id="dropshipper-name" :disabled="!asDropshipper" :required="asDropshipper">
-          <label for="dropshipper-name">Dropshipper name</label>
-          <!-- <span class="invalid material-icons">clear</span>
-          <span class="valid material-icons">check</span> -->
+        <div class="input-group">
+          <input
+            type="text"
+            id="dropshipper-name"
+            :class="`input--${valid.dropshipperName}`"
+            v-model="dropshipperName"
+            :disabled="!asDropshipper"
+            :required="asDropshipper">
+          <label
+            for="dropshipper-name"
+            :class="`label--${valid.dropshipperName}`"
+          >Dropshipper name</label>
+          <span
+            class="icon material-icons"
+            :class="`icon--${valid.dropshipperName}`"
+          >{{ valid.dropshipperName == 'valid' ? 'check' : 'clear' }}</span>
         </div>
-        <div class="input-group input-tel">
-          <input type="tel" id="dropshipper-phone" :disabled="!asDropshipper" :required="asDropshipper">
-          <label for="dropshipper-phone">Dropshipper phone number</label>
-          <!-- <span class="invalid material-icons">clear</span>
-          <span class="valid material-icons">check</span> -->
+        <div class="input-group">
+          <input
+            type="text"
+            id="dropshipper-phone"
+            :class="`input--${valid.dropshipperPhone}`"
+            v-model="dropshipperPhone"
+            maxlength="20"
+            :disabled="!asDropshipper"
+            :required="asDropshipper">
+          <label
+            for="dropshipper-phone"
+            :class="`label--${valid.dropshipperPhone}`"
+          >Dropshipper phone number</label>
+          <span
+            class="icon material-icons"
+            :class="`icon--${valid.dropshipperPhone}`"
+          >{{ valid.dropshipperPhone == 'valid' ? 'check' : 'clear' }}</span>
         </div>
       </div>
     </div>
@@ -48,16 +114,59 @@
 </template>
 
 <script>
+const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const regexPhone = /^([\d\-\+\,\(\)]){6,20}$/
+
 export default {
   name: 'Delivery',
   data() {
     return {
-      asDropshipper: false
+      emailAddr: '',
+      phone: '',
+      address: '',
+      asDropshipper: false,
+      dropshipperName: '',
+      dropshipperPhone: '',
+      valid: {
+        emailAddr: '',
+        phone: '',
+        address: '',
+        dropshipperName: '',
+        dropshipperPhone: '',
+      }
     }
   },
   watch: {
-    asDropshipper: function (val) {
-      this.$store.commit('setAsDropshipper', val)
+    emailAddr: function (val) {
+      this.valid.emailAddr = regexEmail.test(val) ? 'valid' : 'invalid'
+      if (this.emailAddr == '') {
+        this.valid.emailAddr = ''
+      }
+    },
+    phone: function (val) {
+      this.valid.phone = regexPhone.test(val) ? 'valid' : 'invalid'
+      if (this.phone == '') {
+        this.valid.phone = ''
+      }
+    },
+    address: function (val) {
+      this.valid.address = this.address.length > 0 ? 'valid' : ''
+    },
+    dropshipperName: function (val) {
+      this.valid.dropshipperName = this.dropshipperName.length > 0 ? 'valid' : ''
+    },
+    dropshipperPhone: function (val) {
+      this.valid.dropshipperPhone = regexPhone.test(val) ? 'valid' : 'invalid'
+      if (this.dropshipperPhone == '') {
+        this.valid.dropshipperPhone = ''
+      }
+    },
+    asDropshipper: function (yes) {
+      this.$store.commit('setAsDropshipper', yes)
+      if (!yes) {
+        this.dropshipperName = ''
+        this.dropshipperPhone = ''
+      }
     }
   },
   methods: {
