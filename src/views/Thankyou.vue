@@ -4,17 +4,47 @@
       <div class="header__text">Thank you</div>
       <div class="header__underline"></div>
     </div>
-    <div class="order">Order ID : XXKYB</div>
-    <div class="delivery-text">Your order will be delivered today with GO-SEND</div>
+    <div class="order" v-if="orderId">Order ID : {{ orderId }}</div>
+    <div class="delivery-text" v-if="shipment">Your order will be delivered {{ shipmentType[shipment].when }} with {{ shipmentType[shipment].name }}</div>
     <div class="gohome">
       <span class="gohome__icon material-icons">arrow_back</span>
-      <span class="gohome__text">Go to homepage</span>
+      <span class="gohome__text" @click="$router.push('/')">Go to homepage</span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+
 export default {
-  name: 'Thankyou'
+  name: 'Thankyou',
+  data() {
+    return {
+      orderId: ''
+    }
+  },
+  computed: {
+    ...mapState([
+      'shipmentType',
+      'paymentType',
+      'shipment',
+      'payment',
+    ])
+  },
+  methods: {
+    generateOrderId() {
+      let result = ''
+      for (let i = 0; i < 5; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)]
+      }
+      return result
+    }
+  },
+  mounted() {
+    this.$store.commit('setCurrentPage', 'thankyou')
+    this.orderId = this.generateOrderId()
+  }
 }
 </script>
