@@ -8,7 +8,7 @@
     <div class="delivery-text" v-if="shipment">Your order will be delivered {{ shipmentType[shipment].when }} with {{ shipmentType[shipment].name }}</div>
     <div class="gohome">
       <span class="gohome__icon material-icons">arrow_back</span>
-      <span class="gohome__text" @click="$router.push('/')">Go to homepage</span>
+      <span class="gohome__text" @click="goHomepage()">Go to homepage</span>
     </div>
   </div>
 </template>
@@ -47,7 +47,11 @@ export default {
         this.orderId = this.generateOrderId()
         this.$store.commit('setOrderId', this.orderId)
       }
-    }
+    },
+    goHomepage() {
+      this.$store.commit('resetAll')
+      this.$router.push('/')
+    },
   },
   mounted() {
     this.$store.commit('setCurrentPage', 'thankyou')

@@ -92,7 +92,26 @@ export default new Vuex.Store({
     },
     setOrderId(state, payload) {
       state.orderId = payload
-    }
+    },
+    resetAll(state) {
+      state.currentPage = 'delivery'
+      state.emailAddr = ''
+      state.phone = ''
+      state.address = ''
+      state.asDropshipper = false
+      state.dropshipperName = ''
+      state.dropshipperPhone = ''
+      state.deliveryErrors = []
+      state.shipment = null
+      state.payment = null
+      state.paymentErrors = []
+      state.orderId = null
+    },
   },
-  plugins: [createPersistedState({ storage: window.sessionStorage })],
+  plugins: [
+    createPersistedState({
+      key: 'orange-vuex',
+      storage: window.localStorage
+    })
+  ],
 })
