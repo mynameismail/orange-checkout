@@ -52,6 +52,10 @@ export default {
   mounted() {
     this.$store.commit('setCurrentPage', 'thankyou')
     this.syncFromStore()
+    this.$store.commit('setPaymentErrors')
+    if (this.$store.state['paymentErrors'].length > 0) {
+      this.$router.push('/payment')
+    }
   }
 }
 </script>
