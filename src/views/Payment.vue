@@ -86,8 +86,15 @@ export default {
       this.$store.commit('setPayment', val)
     }
   },
+  methods: {
+    syncFromStore() {
+      this.shipment = this.$store.state.shipment
+      this.payment = this.$store.state.payment
+    }
+  },
   mounted() {
     this.$store.commit('setCurrentPage', 'payment')
+    this.syncFromStore()
   }
 }
 </script>

@@ -60,8 +60,14 @@ export default {
       this.$store.commit('setAsDropshipper', val)
     }
   },
+  methods: {
+    syncFromStore() {
+      this.asDropshipper = this.$store.state.asDropshipper
+    }
+  },
   mounted() {
     this.$store.commit('setCurrentPage', 'delivery')
+    this.syncFromStore()
   }
 }
 </script>
