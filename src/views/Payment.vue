@@ -6,29 +6,34 @@
     </div>
     <div class="shipment">
       <div class="choice">
-        <input type="radio" id="radio-gosend" name="shipment" value="gosend">
-        <label for="radio-gosend">
-          <span class="text">GO-SEND</span><br>
-          <span class="price">15,000</span>
+        <input type="radio" class="choice__input" id="radio-gosend" name="shipment" value="gosend">
+        <label class="choice__label" for="radio-gosend">
+          <p>
+            <span class="text">GO-SEND</span><br>
+            <span class="detail">15,000</span>
+          </p>
         </label>
-        <span class="check material-icons">check</span>
+        <span class="choice__check material-icons">check</span>
       </div>
       <div class="choice">
-        <input type="radio" id="radio-jne" name="shipment" value="jne">
-        <label for="radio-jne">
-          <span class="text">JNE</span><br>
-          <span class="price">9,000</span>
+        <input type="radio" class="choice__input" id="radio-jne" name="shipment" value="jne">
+        <label class="choice__label" for="radio-jne">
+          <p>
+            <span class="text">JNE</span><br>
+            <span class="detail">9,000</span>
+          </p>
         </label>
-        <span class="check material-icons">check</span>
+        <span class="choice__check material-icons">check</span>
       </div>
       <div class="choice">
-        <span class="check material-icons">check</span>
-        <input type="radio" id="radio-personal" name="shipment" value="personal">
-        <label for="radio-personal">
-          <span class="text">Personal Courier</span><br>
-          <span class="price">29,000</span>
+        <input type="radio" class="choice__input" id="radio-personal" name="shipment" value="personal">
+        <label class="choice__label" for="radio-personal">
+          <p>
+            <span class="text">Personal Courier</span><br>
+            <span class="detail">29,000</span>
+          </p>
         </label>
-        <span class="check material-icons">check</span>
+        <span class="choice__check material-icons">check</span>
       </div>
     </div>
     <div class="header">
@@ -37,29 +42,28 @@
     </div>
     <div class="payment">
       <div class="choice">
-        <input type="radio" id="radio-ewallet" name="payment" value="ewallet">
-        <label for="radio-ewallet">
-          <span class="text">e-Wallet</span><br>
-          <span class="price">1,500,000 left</span>
+        <input type="radio" class="choice__input" id="radio-ewallet" name="payment" value="ewallet">
+        <label class="choice__label" for="radio-ewallet">
+          <p>
+            <span class="text">e-Wallet</span><br>
+            <span class="detail">1,500,000 left</span>
+          </p>
         </label>
-        <span class="check material-icons">check</span>
+        <span class="choice__check material-icons">check</span>
       </div>
       <div class="choice">
-        <input type="radio" id="radio-bank" name="payment" value="bank">
-        <label for="radio-bank">
-          <span class="text">Bank Transfer</span><br>
-          <span class="price"></span>
+        <input type="radio" class="choice__input" id="radio-bank" name="payment" value="bank">
+        <label class="choice__label" for="radio-bank">
+          <p>Bank Transfer</p>
         </label>
-        <span class="check material-icons">check</span>
+        <span class="choice__check material-icons">check</span>
       </div>
       <div class="choice">
-        <span class="check material-icons">check</span>
-        <input type="radio" id="radio-va" name="payment" value="va">
-        <label for="radio-va">
-          <span class="text">Virtual Account</span><br>
-          <span class="price"></span>
+        <input type="radio" class="choice__input" id="radio-va" name="payment" value="va">
+        <label class="choice__label" for="radio-va">
+          <p>Virtual Account</p>
         </label>
-        <span class="check material-icons">check</span>
+        <span class="choice__check material-icons">check</span>
       </div>
     </div>
   </div>

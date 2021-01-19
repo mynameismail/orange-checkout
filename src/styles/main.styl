@@ -164,36 +164,38 @@ html, body
 .choice
   margin-right: 10px
   position: relative
-  .check
-    position: absolute
-    right: 10px
-    top: 20px
-    color: success-color
-    visibility: hidden
-  label
-    display: block
-    width: 180px
-    padding: 10px 15px
-    min-height: 60px
-    border: 1px solid #cccccc
-    box-sizing: border-box
-    &:hover
-      border: 2px solid success-color
-    .text
-      font-size: 13px
-      color: #000000
-      opacity: 0.8
-    .price
-      font-size: 16px
-      color: #2d2a40
-  input
-    position: fixed
-    width: 0
-    &:checked + label
-      background: rgba(27, 217, 123, 0.1)
-      border: 2px solid success-color
-    &:checked ~ .check
-      visibility: visible
+
+.choice__check
+  position: absolute
+  right: 10px
+  top: 20px
+  color: success-color
+  visibility: hidden
+
+.choice__label
+  width: 180px
+  height: 60px
+  padding: 0 15px
+  display: flex
+  align-items: center
+  border: 1px solid #cccccc
+  box-sizing: border-box
+  font-size: 16px
+  color: #000000
+  &:hover
+    border: 2px solid success-color
+  p .text
+    font-size: 13px
+    opacity: 0.8
+
+.choice__input
+  position: fixed
+  width: 0
+  &:checked + .choice__label
+    background: rgba(27, 217, 123, 0.1)
+    border: 2px solid success-color
+  &:checked ~ .choice__check
+    visibility: visible
 
 #thankyou
   margin: 100px 0 0 200px
@@ -267,11 +269,12 @@ html, body
   font-size: 14px
   .text
     opacity: 0.6
-  &.total
-    title: 24px
-    margin-top: 20px
-    .text
-      opacity: 1
+
+.pricing__item.total
+  title: 24px
+  margin-top: 20px
+  .text
+    opacity: 1
 
 .pricing__btn-continue
   width: 100%
