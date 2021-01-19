@@ -21,6 +21,10 @@
             class="icon material-icons"
             :class="`icon--${valid.emailAddr}`"
           >{{ valid.emailAddr == 'valid' ? 'check' : 'clear' }}</span>
+          <span
+            class="msg--error"
+            v-if="errors.includes('emailAddr')"
+          >* Required field and must be an email</span>
         </div>
         <div class="input-group">
           <input 
@@ -38,6 +42,10 @@
             class="icon material-icons"
             :class="`icon--${valid.phone}`"
           >{{ valid.phone == 'valid' ? 'check' : 'clear' }}</span>
+          <span
+            class="msg--error"
+            v-if="errors.includes('phone')"
+          >* Required field and must be a phone number</span>
         </div>
         <div class="input-group">
           <textarea
@@ -54,6 +62,10 @@
             class="icon material-icons"
             :class="`icon--${valid.address}`"
           >{{ valid.address == 'valid' ? 'check' : 'clear' }}</span>
+          <span
+            class="msg--error"
+            v-if="errors.includes('address')"
+          >* Required field</span>
         </div>
       </div>
       <div class="form__dropshipper">
@@ -89,6 +101,10 @@
             class="icon material-icons"
             :class="`icon--${valid.dropshipperName}`"
           >{{ valid.dropshipperName == 'valid' ? 'check' : 'clear' }}</span>
+          <span
+            class="msg--error"
+            v-if="errors.includes('dropshipperName')"
+          >* Required field</span>
         </div>
         <div class="input-group">
           <input
@@ -107,6 +123,10 @@
             class="icon material-icons"
             :class="`icon--${valid.dropshipperPhone}`"
           >{{ valid.dropshipperPhone == 'valid' ? 'check' : 'clear' }}</span>
+          <span
+            class="msg--error"
+            v-if="errors.includes('dropshipperPhone')"
+          >* Required field and must be a phone number</span>
         </div>
       </div>
     </div>
@@ -153,6 +173,9 @@ export default {
     dropshipperPhone: {
       get() { return this.$store.state.dropshipperPhone },
       set(val) { this.$store.commit('setDropshipperPhone', val) }
+    },
+    errors() {
+      return this.$store.state.deliveryErrors
     },
   },
   watch: {

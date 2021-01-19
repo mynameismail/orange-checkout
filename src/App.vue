@@ -82,12 +82,14 @@ export default {
       goFrom: {
         'delivery': {
           buttonText: 'Continue to Payment',
-          validity: 'isValidDelivery',
+          mutation: 'setDeliveryErrors',
+          error: 'deliveryErrors',
           route: '/payment'
         },
         'payment': {
           buttonText: 'Pay',
-          validity: 'isValidPayment',
+          mutation: 'setPaymentErrors',
+          error: 'paymentErrors',
           route: '/thankyou'
         },
         'thankyou': {
@@ -137,16 +139,18 @@ export default {
       'paymentType',
       'shipment',
       'payment',
+      'deliveryErrors',
+      'paymentErrors',
     ])
   },
   methods: {
     goToPage() {
-      let validity = this.goFrom[this.currentPage].validity
-      if (this.$store.getters[validity]) {
+      let mutation = this.goFrom[this.currentPage].mutation
+      this.$store.commit(mutation)
+      let error = this.goFrom[this.currentPage].error
+      if (this.$store.state[error].length == 0) {
         let route = this.goFrom[this.currentPage].route
         this.$router.push(route)
-      } else {
-        console.log('Complete the required form')
       }
     },
     backToPage() {

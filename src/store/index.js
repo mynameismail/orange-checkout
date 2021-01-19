@@ -15,6 +15,7 @@ export default new Vuex.Store({
     asDropshipper: false,
     dropshipperName: '',
     dropshipperPhone: '',
+    deliveryErrors: [],
     shipmentType: {
       'gosend': {
         name: 'GO-SEND',
@@ -39,22 +40,8 @@ export default new Vuex.Store({
     },
     shipment: null,
     payment: null,
+    paymentErrors: [],
     orderId: null,
-  },
-  getters: {
-    isValidDelivery(state) {
-      let vEmailAddr = isValidEmail(state.emailAddr)
-      let vPhone = isValidPhone(state.phone)
-      let vAddress = state.address.length > 0
-      let vDropshipperName = state.dropshipperName.length > 0
-      let vDropshipperPhone = isValidPhone(state.dropshipperPhone)
-      return vEmailAddr && vPhone && vAddress && vDropshipperName && vDropshipperPhone
-    },
-    isValidPayment(state) {
-      let vShipment = state.shipment in state.shipmentType
-      let vPayment = state.payment in state.paymentType
-      return vShipment && vPayment
-    },
   },
   mutations: {
     setCurrentPage(state, payload) {
@@ -77,6 +64,25 @@ export default new Vuex.Store({
     },
     setDropshipperPhone(state, payload) {
       state.dropshipperPhone = payload
+    },
+    setDeliveryErrors(state) {
+      let errors = []
+
+      if (!isValidEmail(state.emailAddr)) errors.push('emailAddr')
+      if (!isValidPhone(state.phone)) errors.push('phone')
+      if (state.address == '') errors.push('address')
+      if (state.asDropshipper && state.dropshipperName == '') errors.push('dropshipperName')
+      if (state.asDropshipper && state.dropshipperPhone == '') errors.push('dropshipperPhone')
+      
+      state.deliveryErrors = errors
+    },
+    setPaymentErrors(state) {
+      let errors = []
+
+      if (!(state.shipment in state.shipmentType)) errors.push('shipment')
+      if (!(state.payment in state.paymentType)) errors.push('payment')
+
+      state.paymentErrors = errors
     },
     setShipment(state, payload) {
       state.shipment = payload
