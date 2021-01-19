@@ -8,6 +8,7 @@ module.exports = {
   entry: './src/main.js',
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
   },
   module: {
     rules: [
