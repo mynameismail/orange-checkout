@@ -54,6 +54,14 @@ export default {
     return {
       asDropshipper: false
     }
+  },
+  watch: {
+    asDropshipper: function (val) {
+      this.$store.commit('setAsDropshipper', val)
+    }
+  },
+  mounted() {
+    this.$store.commit('setCurrentPage', 'delivery')
   }
 }
 </script>
