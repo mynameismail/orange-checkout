@@ -7,7 +7,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentPage: 'delivery',
+    emailAddr: '',
+    phone: '',
+    address: '',
     asDropshipper: false,
+    dropshipperName: '',
+    dropshipperPhone: '',
     shipmentType: {
       'gosend': {
         name: 'GO-SEND',
@@ -35,11 +40,26 @@ export default new Vuex.Store({
     orderId: null,
   },
   mutations: {
+    setCurrentPage(state, payload) {
+      state.currentPage = payload
+    },
+    setEmailAddr(state, payload) {
+      state.emailAddr = payload
+    },
+    setPhone(state, payload) {
+      state.phone = payload
+    },
+    setAddress(state, payload) {
+      state.address = payload
+    },
     setAsDropshipper(state, payload) {
       state.asDropshipper = payload
     },
-    setCurrentPage(state, payload) {
-      state.currentPage = payload
+    setDropshipperName(state, payload) {
+      state.dropshipperName = payload
+    },
+    setDropshipperPhone(state, payload) {
+      state.dropshipperPhone = payload
     },
     setShipment(state, payload) {
       state.shipment = payload
