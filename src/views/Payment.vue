@@ -99,6 +99,10 @@ export default {
   },
   mounted() {
     this.$store.commit('setCurrentPage', 'payment')
+    this.$store.commit('setDeliveryErrors')
+    if (this.$store.state['deliveryErrors'].length > 0) {
+      this.$router.push('/')
+    }
   }
 }
 </script>
