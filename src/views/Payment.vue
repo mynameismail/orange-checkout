@@ -84,34 +84,21 @@
 <script>
 export default {
   name: 'Payment',
-  data() {
-    return {
-      shipment: '',
-      payment: ''
-    }
-  },
   computed: {
+    shipment: {
+      get() { return this.$store.state.shipment },
+      set(val) { this.$store.commit('setShipment', val) }
+    },
+    payment: {
+      get() { return this.$store.state.payment },
+      set(val) { this.$store.commit('setPayment', val) }
+    },
     errors() {
       return this.$store.state.paymentErrors
     },
   },
-  watch: {
-    shipment: function (val) {
-      this.$store.commit('setShipment', val)
-    },
-    payment: function (val) {
-      this.$store.commit('setPayment', val)
-    }
-  },
-  methods: {
-    syncFromStore() {
-      this.shipment = this.$store.state.shipment
-      this.payment = this.$store.state.payment
-    }
-  },
   mounted() {
     this.$store.commit('setCurrentPage', 'payment')
-    this.syncFromStore()
   }
 }
 </script>
