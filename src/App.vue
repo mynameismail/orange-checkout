@@ -82,15 +82,17 @@ export default {
       goFrom: {
         'delivery': {
           buttonText: 'Continue to Payment',
+          validity: 'isValidDelivery',
           route: '/payment'
         },
         'payment': {
           buttonText: 'Pay',
+          validity: 'isValidPayment',
           route: '/thankyou'
         },
         'thankyou': {
           buttonText: '',
-          route: '/'
+          route: ''
         },
       },
       backFrom: {
@@ -139,8 +141,13 @@ export default {
   },
   methods: {
     goToPage() {
-      let route = this.goFrom[this.currentPage].route
-      this.$router.push(route)
+      let validity = this.goFrom[this.currentPage].validity
+      if (this.$store.getters[validity]) {
+        let route = this.goFrom[this.currentPage].route
+        this.$router.push(route)
+      } else {
+        console.log('Complete the required form')
+      }
     },
     backToPage() {
       let route = this.backFrom[this.currentPage].route
