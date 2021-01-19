@@ -62,6 +62,7 @@
             class="icon material-icons"
             :class="`icon--${valid.address}`"
           >{{ valid.address == 'valid' ? 'check' : 'clear' }}</span>
+          <span class="textarea-counter">{{ address.length }} / 120</span>
           <span
             class="msg--error"
             v-if="errors.includes('address')"
