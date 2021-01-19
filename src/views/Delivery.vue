@@ -114,19 +114,12 @@
 </template>
 
 <script>
-const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-const regexPhone = /^([\d\-\+\,\(\)]){6,20}$/
+import { isValidEmail, isValidPhone } from '../helper'
 
 export default {
   name: 'Delivery',
   data() {
     return {
-      emailAddr: '',
-      phone: '',
-      address: '',
-      asDropshipper: false,
-      dropshipperName: '',
-      dropshipperPhone: '',
       valid: {
         emailAddr: '',
         phone: '',
@@ -136,15 +129,41 @@ export default {
       }
     }
   },
+  computed: {
+    emailAddr: {
+      get() { return this.$store.state.emailAddr },
+      set(val) { this.$store.commit('setEmailAddr', val) }
+    },
+    phone: {
+      get() { return this.$store.state.phone },
+      set(val) { this.$store.commit('setPhone', val) }
+    },
+    address: {
+      get() { return this.$store.state.address },
+      set(val) { this.$store.commit('setAddress', val) }
+    },
+    asDropshipper: {
+      get() { return this.$store.state.asDropshipper },
+      set(val) { this.$store.commit('setAsDropshipper', val) }
+    },
+    dropshipperName: {
+      get() { return this.$store.state.dropshipperName },
+      set(val) { this.$store.commit('setDropshipperName', val) }
+    },
+    dropshipperPhone: {
+      get() { return this.$store.state.dropshipperPhone },
+      set(val) { this.$store.commit('setDropshipperPhone', val) }
+    },
+  },
   watch: {
     emailAddr: function (val) {
-      this.valid.emailAddr = regexEmail.test(val) ? 'valid' : 'invalid'
+      this.valid.emailAddr = isValidEmail(val) ? 'valid' : 'invalid'
       if (this.emailAddr == '') {
         this.valid.emailAddr = ''
       }
     },
     phone: function (val) {
-      this.valid.phone = regexPhone.test(val) ? 'valid' : 'invalid'
+      this.valid.phone = isValidPhone(val) ? 'valid' : 'invalid'
       if (this.phone == '') {
         this.valid.phone = ''
       }
@@ -152,31 +171,24 @@ export default {
     address: function (val) {
       this.valid.address = this.address.length > 0 ? 'valid' : ''
     },
-    dropshipperName: function (val) {
-      this.valid.dropshipperName = this.dropshipperName.length > 0 ? 'valid' : ''
-    },
-    dropshipperPhone: function (val) {
-      this.valid.dropshipperPhone = regexPhone.test(val) ? 'valid' : 'invalid'
-      if (this.dropshipperPhone == '') {
-        this.valid.dropshipperPhone = ''
-      }
-    },
     asDropshipper: function (yes) {
-      this.$store.commit('setAsDropshipper', yes)
       if (!yes) {
         this.dropshipperName = ''
         this.dropshipperPhone = ''
       }
-    }
-  },
-  methods: {
-    syncFromStore() {
-      this.asDropshipper = this.$store.state.asDropshipper
-    }
+    },
+    dropshipperName: function (val) {
+      this.valid.dropshipperName = this.dropshipperName.length > 0 ? 'valid' : ''
+    },
+    dropshipperPhone: function (val) {
+      this.valid.dropshipperPhone = isValidPhone(val) ? 'valid' : 'invalid'
+      if (this.dropshipperPhone == '') {
+        this.valid.dropshipperPhone = ''
+      }
+    },
   },
   mounted() {
     this.$store.commit('setCurrentPage', 'delivery')
-    this.syncFromStore()
   }
 }
 </script>
