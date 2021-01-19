@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
+import { isValidEmail, isValidPhone } from '../helper'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -38,6 +40,21 @@ export default new Vuex.Store({
     shipment: null,
     payment: null,
     orderId: null,
+  },
+  getters: {
+    isValidDelivery(state) {
+      let vEmailAddr = isValidEmail(state.emailAddr)
+      let vPhone = isValidPhone(state.phone)
+      let vAddress = state.address.length > 0
+      let vDropshipperName = state.dropshipperName.length > 0
+      let vDropshipperPhone = isValidPhone(state.dropshipperPhone)
+      return vEmailAddr && vPhone && vAddress && vDropshipperName && vDropshipperPhone
+    },
+    isValidPayment(state) {
+      let vShipment = state.shipment in state.shipmentType
+      let vPayment = state.payment in state.paymentType
+      return vShipment && vPayment
+    },
   },
   mutations: {
     setCurrentPage(state, payload) {
