@@ -40,11 +40,18 @@ export default {
         result += chars[Math.floor(Math.random() * chars.length)]
       }
       return result
+    },
+    syncFromStore() {
+      this.orderId = this.$store.state.orderId
+      if (!this.orderId) {
+        this.orderId = this.generateOrderId()
+        this.$store.commit('setOrderId', this.orderId)
+      }
     }
   },
   mounted() {
     this.$store.commit('setCurrentPage', 'thankyou')
-    this.orderId = this.generateOrderId()
+    this.syncFromStore()
   }
 }
 </script>

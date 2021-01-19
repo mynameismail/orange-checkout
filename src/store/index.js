@@ -32,6 +32,7 @@ export default new Vuex.Store({
     },
     shipment: null,
     payment: null,
+    orderId: null,
   },
   mutations: {
     setAsDropshipper(state, payload) {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     setPayment(state, payload) {
       state.payment = payload
     },
+    setOrderId(state, payload) {
+      state.orderId = payload
+    }
   },
   plugins: [createPersistedState({ storage: window.sessionStorage })],
 })
