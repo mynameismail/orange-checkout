@@ -111,7 +111,7 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: 'orange-vuex',
-      storage: window.localStorage
+      storage: window.sessionStorage
     })
   ],
 })
