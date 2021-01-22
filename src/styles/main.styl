@@ -1,9 +1,5 @@
 @import 'reset.css'
-
-primary-color = #ff8a00
-secondary-color = #fffae6
-success-color = #1bd97b
-text-color = #2d2a40
+@import 'variables.styl'
 
 title(size)
   font-family: 'Montserrat', sans-serif
@@ -12,70 +8,22 @@ title(size)
   color: primary-color
 
 html, body
-  height: 100%
   background-color: secondary-color
   font-family: 'Inter', sans-serif
 
-#app
-  height: 100%
-  display: flex
-  justify-content: center
-  align-items: center
-
 .container
+  width: 100%
   background-color: #ffffff
-  width: 1100px
-  height: 550px
   border-radius: 4px
   box-shadow: 2px 10px 20px rgba(255, 138, 0, 0.1)
-  position: relative
-
-.stepper
-  background-color: secondary-color
-  width: 500px
-  height: 70px
-  border-radius: (@height / 2)
-  position: absolute
-  top: -(@height / 2)
-  left: 50%
-  margin-left: -(@width / 2)
-  display: flex
-  justify-content: center
-  align-items: center
-
-.stepper__step
-  display: flex
-  align-items: center
-  font-size: 16px
-  .number
-    width: 30px
-    line-height: 30px
-    text-align: center
-    background-color: primary-color
-    opacity: 0.2
-    color: #ffffff
-    border-radius: 15px
-  .text
-    margin-left: 10px
-    color: primary-color
-  &.completed .number
-    opacity: 1
-
-.stepper__arrow
-  margin: 0 20px
-  font-size: 24px
-  color: primary-color
-  .material-icons
-    line-height: 30px
 
 .back
   display: flex
   align-items: center
-  position: absolute
-  top: 30px
-  left: 40px
   cursor: pointer
   opacity: 0.6
+  font-size: 14px
+  padding: 10px
   &:hover
     opacity: 1
 
@@ -83,19 +31,46 @@ html, body
   font-size: 18px
 
 .back__text
-  font-size: 14px
   margin-left: 5px
 
-.content
-  margin-top: 70px
+.stepper
+  background-color: secondary-color
+  height: 50px
+  border-radius: (@height / 2)
   display: flex
+  justify-content: center
+  align-items: center
+
+.stepper__step
+  display: flex
+  align-items: center
+  .number
+    width: 30px
+    line-height: 30px
+    text-align: center
+    background-color: primary-color
+    opacity: 0.2
+    color: #ffffff
+    border-radius: (@width / 2)
+  .text
+    margin-left: 5px
+    color: primary-color
+
+.step--completed .number
+  opacity: 1
+
+.stepper__arrow
+  margin: 0 5px
+  color: primary-color
+
+.content
+  margin-top: 20px
 
 .content__left
-  flex: 1
-  padding: 0 40px
+  padding: 0 10px
 
 .header
-  margin-bottom: 30px
+  margin-bottom: 20px
 
 .header__text
   title: 36px
@@ -113,22 +88,9 @@ html, body
 .msg--error
   font-size: 13px
   color: primary-color
-  
-#delivery .form
-  display: flex
 
-.form__details
-  width: 400px
-  margin-right: 20px
-
-.form__dropshipper
-  width: 300px
-  position: relative
-
-.form__dropshipper .checkbox
-  position: absolute
-  top: -45px
-  right: 0
+.checkbox
+  margin: 10px 0
 
 .checkbox__label
   display: flex
@@ -218,10 +180,11 @@ html, body
 
 .choice-group
   display: flex
+  flex-wrap: wrap
   margin-bottom: 5px
 
 .choice
-  margin-right: 10px
+  margin: 0 10px 10px 0
   position: relative
 
 .choice__check
@@ -256,9 +219,6 @@ html, body
   &:checked ~ .choice__check
     visibility: visible
 
-#thankyou
-  margin: 100px 0 0 200px
-
 .order
   margin-top: 26px
   font-size: 14px
@@ -268,7 +228,7 @@ html, body
   opacity: 0.6
 
 .gohome
-  margin-top: 60px
+  margin-top: 30px
   display: flex
   align-items: center
   cursor: pointer
@@ -283,16 +243,9 @@ html, body
   font-size: 14px
   margin-left: 5px
 
-.content__divider
-  width: 1px
-  background-color: primary-color
-  opacity: 0.2
-
 .content__right
-  width: 260px
-  height: 460px
-  padding: 0 20px
-  position: relative
+  margin-top: 20px
+  padding: 0 10px
 
 .summary__header
   title: 24px
@@ -317,9 +270,7 @@ html, body
     color: success-color
 
 .pricing
-  width: 260px
-  position: absolute
-  bottom: 0
+  margin-top: 20px
 
 .pricing__item
   display: flex
@@ -338,7 +289,7 @@ html, body
 .pricing__btn-continue
   width: 100%
   height: 60px
-  margin-top: 20px
+  margin: 10px 0
   background-color: primary-color
   border: 1px solid rgba(255, 255, 255, 0.2)
   box-sizing: border-box
