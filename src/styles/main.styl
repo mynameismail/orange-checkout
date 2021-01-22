@@ -89,7 +89,7 @@ html, body
   font-size: 13px
   color: primary-color
 
-.checkbox
+.form__dropshipper .checkbox
   margin: 10px 0
 
 .checkbox__label
@@ -300,3 +300,64 @@ html, body
   color: #ffffff
   outline: none
   cursor: pointer
+
+@media screen and (min-width: 992px)
+  .container
+    width: 80%
+    margin: 50px auto
+    padding: 40px 0 20px 0
+    position: relative
+  
+  .back
+    position: absolute
+    left: 20px
+    top: 10px
+
+  .stepper
+    width: 50%
+    position: absolute
+    top: -25px
+    left: 50% - (@width / 2)
+
+  .content
+    display: flex
+
+  .content__left
+    width: 75%
+    padding: 0 40px
+
+  #delivery .form
+    display: flex
+
+  .form__details
+    width: 60%
+    margin-right: 20px
+
+  .form__dropshipper
+    width: 40%
+    position: relative
+
+  .form__dropshipper .checkbox
+    position: absolute
+    right: 0
+    top: -45px
+
+  #thankyou
+    margin: 100px 0 0 200px
+
+  .content__divider
+    width: 1px
+    background-color: primary-color
+    opacity: 0.2
+  
+  .content__right
+    width: 25%
+    height: 460px
+    padding: 0 20px
+    position: relative
+
+  .pricing
+    position: absolute
+    left: 20px
+    right: 20px
+    bottom: 0
