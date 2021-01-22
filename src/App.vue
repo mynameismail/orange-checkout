@@ -1,29 +1,29 @@
 <template>
   <div id="app">
     <div class="container">
+      <div class="back" v-if="backText" @click="backToPage()">
+        <span class="back__icon material-icons">arrow_back</span>
+        <span class="back__text">{{ backText }}</span>
+      </div>
       <div class="stepper">
-        <div class="stepper__step step1 completed">
+        <div class="stepper__step step--completed">
           <div class="number">1</div>
           <div class="text">Delivery</div>
         </div>
         <div class="stepper__arrow">
           <span class="material-icons">keyboard_arrow_right</span>
         </div>
-        <div class="stepper__step step2" :class="{ 'completed': currentPage == 'payment' || currentPage == 'thankyou' }">
+        <div class="stepper__step" :class="{ 'step--completed': currentPage == 'payment' || currentPage == 'thankyou' }">
           <div class="number">2</div>
           <div class="text">Payment</div>
         </div>
         <div class="stepper__arrow">
           <span class="material-icons">keyboard_arrow_right</span>
         </div>
-        <div class="stepper__step step3" :class="{ 'completed': currentPage == 'thankyou' }">
+        <div class="stepper__step" :class="{ 'step--completed': currentPage == 'thankyou' }">
           <div class="number">3</div>
           <div class="text">Finish</div>
         </div>
-      </div>
-      <div class="back" v-if="backText" @click="backToPage()">
-        <span class="back__icon material-icons">arrow_back</span>
-        <span class="back__text">{{ backText }}</span>
       </div>
       <div class="content">
         <div class="content__left">
